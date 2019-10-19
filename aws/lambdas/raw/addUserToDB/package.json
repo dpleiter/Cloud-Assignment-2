@@ -1,0 +1,6 @@
+{
+    "name": "addUserToDB",
+    "dependencies": {
+        "pg": "^7.12.1"
+    }
+}

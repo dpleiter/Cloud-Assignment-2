@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Simple Map</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+		#map {
+			height: 89%;
+		}
+
+		/* Optional: Makes the sample page fill the window. */
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		< !-- Menu Bar -->div.b {
+			position: absolute;
+			right: 0;
+			width: 800px;
+			height: 100px;
+		}
+
+		.topnav {
+			overflow: hidden;
+			background-color: #333;
+		}
+
+		.topnav a {
+			float: left;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 17px;
+		}
+
+		.topnav a:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		.topnav a.active {
+			background-color: #4CAF50;
+			color: white;
+		}
+
+		.topnav span {
+			float: left;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 17px;
+			cursor: pointer;
+		}
+
+		.topnav span:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		< !-- Form -->* {
+			box-sizing: border-box;
+		}
+
+		form.example input[type=text] {
+			padding: 10px;
+			font-size: 17px;
+			border: 1px solid grey;
+			float: left;
+			width: 80%;
+			background: #f1f1f1;
+		}
+
+		form.example button {
+			float: left;
+			width: 20%;
+			padding: 10px;
+			background: #2196F3;
+			color: white;
+			font-size: 17px;
+			border: 1px solid grey;
+			border-left: none;
+			cursor: pointer;
+		}
+
+		form.example button:hover {
+			background: #0b7dda;
+		}
+
+		form.example::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		< !-- Button -->form.sample button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+
+		/* On mouse-over */
+		.sidenav a:hover,
+		.dropdown-button:hover {
+			background-color: #f2f2f2;
+		}
+
+		/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+		.dropdown-container {
+			display: none;
+			background-color: silver;
+			padding-left: 8px;
+			cursor: pointer;
+		}
+
+		/* On mouse-over dropdown */
+		.dropdown-container span:hover {
+			color: red;
+		}
+
+		/* Optional: Style the caret down icon */
+		.fa-caret-down {
+			float: right;
+			padding-right: 8px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Nav bar -->
+	<div class="topnav">
+		<a id="openNav" style=background-color:#333; class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</a>
+		<a class="active" href="main.html">Home</a>
+		<a href="instructions.html">Instructions</a>
+		<a href="contact.html">Contact</a>
+		<a href="about.html">About</a>
+	</div>
+
+
+	<!-- Sidebar -->
+	<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+		<button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+		<a id="submit" class="w3-bar-item w3-button">Save</a>
+		<a id="toggle" class="w3-bar-item w3-button">Toggle</a>
+		<a id="invite" class="w3-bar-item w3-button">Invite user to map</a>
+		<a id="signout" class="w3-bar-item w3-button">Sign out</a>
+		<a href="createmap.html" class="w3-bar-item w3-button">New Address</a>
+		<button class="dropdown-button">Nearby Amenity
+			<i class="fa fa-caret-down"></i>
+		</button>
+		<div class="dropdown-container">
+			<span id="School" class="amenitySearch">Schools</span>
+			<br>
+			<span id="Restaurant" class="amenitySearch">Restaurants</span>
+			<br>
+			<span id="Supermarket" class="amenitySearch">Supermarkets</span>
+			<br>
+			<span id="Library" class="amenitySearch">Libraries</span>
+		</div>
+	</div>
+
+	<div class="b" id="map"></div>
+
+	<script src="js/vendor/jquery-3.1.0.js"></script>
+	<script src="js/MarkerClass.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/initmap.js"></script>
+	<script src="js/vendor/aws-cognito-sdk.min.js"></script>
+	<script src="js/vendor/amazon-cognito-identity.min.js"></script>
+	<script src="js/cognito-auth.js"></script>
+	<script src="js/main.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=[REMOVED]&libraries=places&callback=initMap">
+	</script>
+	<script>
+		function w3_open() {
+			document.getElementById("map").style.marginLeft = "11%";
+			document.getElementById("mySidebar").style.width = "11%";
+			document.getElementById("mySidebar").style.display = "block";
+			document.getElementById("openNav").style.display = 'none';
+		}
+
+		function w3_close() {
+			document.getElementById("map").style.marginLeft = "0%";
+			document.getElementById("mySidebar").style.display = "none";
+			document.getElementById("openNav").style.display = "inline-block";
+		}
+
+
+		/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+		var dropdown = document.getElementsByClassName("dropdown-button");
+		var j;
+
+		for (j = 0; j < dropdown.length; j++) {
+			dropdown[j].addEventListener("click", function () {
+				this.classList.toggle("active");
+				var dropdownContent = this.nextElementSibling;
+				if (dropdownContent.style.display === "block") {
+					dropdownContent.style.display = "none";
+				} else {
+					dropdownContent.style.display = "block";
+				}
+			});
+		}
+	</script>
+
+</body>
+
+</html>

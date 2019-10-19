@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<title>Simple Map</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+		#map {
+			height: 80%;
+		}
+
+		/* Optional: Makes the sample page fill the window. */
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		< !-- Menu Bar -->div.b {
+			position: absolute;
+			right: 0;
+			width: 800px;
+			height: 110px;
+		}
+
+		.topnav {
+			overflow: hidden;
+			background-color: #333;
+		}
+
+		ul.test2 {
+			list-style-type: circle;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+
+		.topnav a {
+			float: left;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 17px;
+		}
+
+		.topnav span {
+			float: left;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 17px;
+			cursor: pointer;
+		}
+
+		.topnav a:hover {
+			background-color: #ddd;
+			color: black;
+			
+		}
+		.topnav a:hover.sgnout {
+			color: red;
+			
+		}
+
+		.topnav a.active {
+			background-color: #4CAF50;
+			color: white;
+		}
+
+		. < !-- Form -->* {
+			box-sizing: border-box;
+		}
+
+		form.example input[type=text] {
+			padding: 10px;
+			font-size: 17px;
+			border: 1px solid grey;
+			float: left;
+			width: 80%;
+			background: #f1f1f1;
+		}
+
+		form.example button {
+			float: left;
+			width: 20%;
+			padding: 10px;
+			background: #2196F3;
+			color: white;
+			font-size: 17px;
+			border: 1px solid grey;
+			border-left: none;
+			cursor: pointer;
+		}
+
+		form.example button:hover {
+			background: #0b7dda;
+		}
+
+		form.example::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		< !-- Button -->form.sample button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+
+
+<body>
+	<!-- Nav bar -->
+	<div class="topnav">
+		<a class="active" href="main.html">Home</a>
+		<a href="instructions.html">Instructions</a>
+		<a href="contact.html">Contact</a>
+		<a href="about.html">About</a>
+		
+		<a class ="sgnout" href="" id="signout">Sign Out</a>
+	</div>
+	<div>
+		<p>In order to create a new map, enter an address or click on the below map to set a home address</p>
+	</div>
+
+	<div id="activeMaps">
+		<ul id="test" class="test2">
+
+		</ul>
+	</div>
+
+	<form class="example" style="margin:50px;max-width:600px">
+		<input type="text" placeholder="Address.." name="search" id="address">
+		<button id="request" type="button"><i class="fa fa-search"></i></button>
+	</form>
+
+	<div id="map"></div>
+
+	<script src="js/vendor/jquery-3.1.0.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/initsearch.js"></script>
+	<script src="js/vendor/aws-cognito-sdk.min.js"></script>
+	<script src="js/vendor/amazon-cognito-identity.min.js"></script>
+	<script src="js/cognito-auth.js"></script>
+	<script src="js/createmap.js"></script>
+
+	
+	<script defer
+		src="https://maps.googleapis.com/maps/api/js?key=[REMOVED]&libraries=places&callback=initSearch">
+	</script>
+	
+
+
+</body>
+
+</html>

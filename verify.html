@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		/* Optional: Makes the sample page fill the window. */
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		input[type=text],
+		input[type=email],
+		select {
+			width: 20%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		input[type=submit] {
+			width: 8%;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		input[type=submit]:hover {
+			background-color: #45a049;
+		}
+
+		div {
+			border-radius: 5px;
+			background-color: #f2f2f2;
+			padding: 20px;
+		}
+	</style>
+
+<body>
+	<div>
+		<section class="form-wrap">
+			<h1> Verify Email </h1>
+			<form id="verifyForm">
+				<label for="fname">Email</label>
+				<input type="email" id="emailInputVerify" placeholder="Email" required>
+
+				<label for="lname">Verification Code</label>
+				<input type="text" id="codeInputVerify" placeholder="Verification Code" pattern=".*" required>
+
+				<input type="submit" value="Verify">
+			</form>
+	</div>
+
+
+	<script src="js/vendor/jquery-3.1.0.js"></script>
+	<script src="js/vendor/aws-cognito-sdk.min.js"></script>
+	<script src="js/vendor/amazon-cognito-identity.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/cognito-auth.js"></script>
+</body>
+
+</html>
